@@ -1,0 +1,16 @@
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    width:100%;
+    background-color:white;
+    /* z-index:1; */
+    
+}
+
+.logo{
+    margin: 0 30px;
+    width:6rem;
+}
