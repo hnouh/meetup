@@ -9,22 +9,31 @@ import axios from "axios";
 export default function Home() {
     const [foods,setFoods]=useState([])
     const [choice,setChoice]=useState("breakfast")
-    
+    const [list, setList]=useState([
+        {food:"breakfast",className:"tabs active-tabs"},
+        {food:"snacks",className:"tabs"},
+        {food:"vegan",className:"tabs"},
+        {food:"italian",className:"tabs"},
+        {food:"seafood",className:"tabs"},
+        {food:"lunch",className:"tabs"},
+        {food:"cake_pan",className:"tabs"},
+        
+    ])
     useEffect(()=>{
         axios({
             method: 'GET',
             url: 'https://tasty.p.rapidapi.com/recipes/list',
-            params: {from: '0', size: '12', tags: choice},
+            params: {from: '0', size: '4', tags: choice},
             headers: {
-              'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+              'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
+              "X-RapidAPI-Key": "62e41a0607mshcef95c3b6c98e0bp1e76d1jsnf4fcca6a5b6a"
             }
-          }).then(function (response) {
-              console.log(response.data);
+          }).then(function (response) {  
               setFoods(response.data.results)
           }).catch(function (error) {
               console.error(error);
           });
-    },[])
+    },[choice])
 
   return (
     <>
@@ -63,8 +72,10 @@ export default function Home() {
             </div>
             <div className="favoritesdown">
                 <Tabs
-                
-                
+                onListChange={setList}
+                list={list}
+                onChoiceChange={setChoice}
+                foods={foods}
                 ></Tabs>
             </div>
         </div>
