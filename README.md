@@ -14,4 +14,4 @@ const groceryRouter = require('./routes/grocery');
 app.use(groceryRouter);
 ```
 
-hope it's clear now and if you have any question just send an email to me.
+hope it's clear now and if you have any question just send an email to me at any time.
